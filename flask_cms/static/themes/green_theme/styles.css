@@ -1,0 +1,40 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e8f5e9; /* Light green background */
+    color: #333; /* Default text color */
+}
+
+/* Navbar Styling */
+.bg-green {
+    background-color: #388e3c !important; /* Dark green */
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link:hover {
+    color: #a5d6a7 !important; /* Light green hover effect */
+}
+
+/* Main Content Styling */
+main {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Styling */
+.bg-green {
+    background-color: #388e3c !important; /* Dark green for footer */
+    color: white;
+    padding: 10px 0;
+}

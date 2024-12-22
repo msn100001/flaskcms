@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 { color: #333; }
+        form { margin-bottom: 30px; }
+        form input, form textarea, form button {
+            display: block;
+            width: 100%; max-width: 500px; margin-bottom: 10px; padding: 10px;
+        }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table th, table td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        table th { background: #f4f4f9; }
+        .success { color: green; }
+        .error { color: red; }
+        .form-section { margin-bottom: 40px; }
+    </style>
+</head>
+<body>
+    <h1>Dashboard</h1>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Form to update CMS name -->
+    <div class="form-section">
+        <h2>Update CMS Name</h2>
+        <form method="POST" action="/dashboard">
+            <input type="hidden" name="form_type" value="update_cms_name">
+            <input type="text" name="cms_name" value="{{ cms_name }}" placeholder="Enter CMS name" required>
+            <button type="submit">Update Name</button>
+        </form>
+    </div>
+
+    <!-- Form to add a new page -->
+    <div class="form-section">
+        <h2>Add New Page</h2>
+        <form method="POST" action="/dashboard">
+            <input type="hidden" name="form_type" value="add_page">
+            <input type="text" name="path" placeholder="Path (e.g., /about)" required>
+            <input type="text" name="title" placeholder="Title" required>
+            <textarea name="content" placeholder="Content (HTML allowed)" rows="5" required></textarea>
+            <button type="submit">Add Page</button>
+        </form>
+    </div>
+
+    <!-- List of existing pages -->
+    <div class="form-section">
+        <h2>Existing Pages</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Path</th>
+                    <th>Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for page in pages %}
+                <tr>
+                    <td>{{ page.path }}</td>
+                    <td>{{ page.title }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('delete_page', page_id=page.id) }}" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">No pages found.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Form to upload a new theme -->
+    <div class="form-section">
+        <h2>Upload New Theme</h2>
+        <form method="POST" action="/upload-theme" enctype="multipart/form-data">
+            <input type="file" name="theme_zip" required>
+            <button type="submit">Upload Theme</button>
+        </form>
+    </div>
+
+    <!-- List of existing themes -->
+    <div class="form-section">
+        <h2>Existing Themes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for theme in themes %}
+                <tr>
+                    <td>{{ theme.name }}</td>
+                    <td>{{ 'Active' if theme.active else 'Inactive' }}</td>
+                    <td>
+                        {% if not theme.active %}
+                        <form method="POST" action="{{ url_for('activate_theme', theme_name=theme.name) }}" style="display:inline;">
+                            <button type="submit">Activate</button>
+                        </form>
+                        {% endif %}
+                        <form method="POST" action="{{ url_for('delete_theme', theme_name=theme.name) }}" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">No themes found.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

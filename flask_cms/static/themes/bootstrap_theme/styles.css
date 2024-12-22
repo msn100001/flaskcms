@@ -1,0 +1,63 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Light background */
+}
+
+/* Header Styles */
+header {
+    background-color: #6c757d; /* Gray header */
+    margin-bottom: 20px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #6c757d; /* Gray footer */
+    color: white;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+/* Navbar Styles */
+.navbar-nav .nav-link {
+    color: white !important; /* Ensure links are white */
+    transition: color 0.3s ease-in-out; /* Smooth hover transition */
+}
+
+/* Navbar Link Hover Effect */
+.navbar-nav .nav-link:hover {
+    color: #ffc107 !important; /* Highlight links on hover */
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    min-height: calc(100vh - 160px); /* Adjust for header and footer */
+    background-color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for content area */
+    border-radius: 5px;
+}
+
+/* Button Styles */
+button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    main {
+        padding: 10px;
+    }
+}

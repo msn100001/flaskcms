@@ -1,0 +1,43 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* White background */
+    color: #333; /* Default text color */
+}
+
+/* Navbar Styling */
+.bg-white {
+    background-color: #ffffff !important; /* White background */
+    border-bottom: 1px solid #ddd; /* Subtle border */
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #333;
+}
+
+.nav-link {
+    color: #555 !important;
+}
+
+.nav-link:hover {
+    color: #007bff !important; /* Blue hover effect */
+}
+
+/* Main Content Styling */
+main {
+    padding: 20px;
+    background-color: #f8f9fa; /* Light gray for subtle contrast */
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Styling */
+footer {
+    background-color: #f8f9fa; /* Light gray */
+    color: #6c757d; /* Muted text */
+    padding: 15px 0;
+    border-top: 1px solid #ddd; /* Subtle border */
+}
